@@ -3,7 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 
 export default function useInfiniteCamera({
   segmentLength = 80,
-  scrollSpeed = 0.04,
+  scrollSpeed = 0.3,
   parallaxIntensity = 0.6,
   smoothing = 0.08,
   scrollEnabled = true,
@@ -20,7 +20,7 @@ export default function useInfiniteCamera({
     if (typeof window === 'undefined') return;
     const onWheel = (e) => {
       if (!scrollEnabled || overrideRef.current) return;
-      targetZ.current = Math.max(0, Math.min(segmentLength, targetZ.current + e.deltaY * scrollSpeed * 0.01));
+      targetZ.current = Math.max(0, Math.min(segmentLength, targetZ.current + e.deltaY * scrollSpeed));
     };
     const onMouse = (e) => {
       if (!parallaxEnabled) return;

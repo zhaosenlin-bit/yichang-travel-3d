@@ -7,12 +7,12 @@ export default function Preloader({ ready, onComplete }) {
   const [mounted, setMounted] = useState(true);
 
   useEffect(() => {
-    if (ready && progress >= 100) {
+    if (ready) {
       const t = setTimeout(() => setHidden(true), 400);
       const t2 = setTimeout(() => { setMounted(false); onComplete && onComplete(); }, 1100);
       return () => { clearTimeout(t); clearTimeout(t2); };
     }
-  }, [ready, progress, onComplete]);
+  }, [ready, onComplete]);
 
   if (!mounted) return null;
   return (
